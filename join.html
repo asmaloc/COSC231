@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
   <head>
-
+    <script type="text/javascript" src="join.js" >
+    </script>
   </head>
   <body>
     <div id="header">
@@ -17,24 +18,26 @@
 		</div>
     <div>
       <h2>Join our League!</h2>
-      <form action="POST">
-        <p>
-          <label>Username: <input type="textbox" name="username" /></label>
-          <label>Password: <input type="password" name="password" /></label>
-        </p>
-        <p>
-          <label>Handle: <input type="textbox" name="title" /></label><br  />
-          <label>First Name/Last Name: <input type="textbox" name="firstname" /></label>
-      ` </p>
-          <label>Gender: <input type="radio" name="gender" /></label>
-        <p>
-          <label>Email Address: <input type="textbox" name="email" /></label>
-          <label>Date of Birth: <input type="textbox" name="birthdate" /></label>
-        </p>
-          <label>Credit Card Number: <input type="textbox" name=ccn /></label>
-        <p>
+      <form method="get">
+          <label>Username: <input type="textbox" id="username" /></label>
+          <label>Password: <input type="password" id="password" /></label>
+          <br />
+          <label>Handle: <input type="textbox" id="title" /></label><br  />
+          <br  />
+          <label>First Name/Last Name: <input type="textbox" id="fullname" /></label>
+          <br  />
+          <label>Gender: <input type="radio" id="gender" /></label>
+          <br />
+          <label>Email Address: <input type="textbox" id="email" /></label>
+          <br />
+          <label>Date of Birth: <input type="textbox" id="birthdate" /></label>
+          <br />
+          <label>Credit Card Number: <input type="textbox" id=ccn /></label>
+          <br />
 
-          <label>Favorite Type of Apple: <input type="favorite type of apple" /></label></p>
+          <label>Favorite Type of Apple: <input id="favorite type of apple" /></label>
+          <button onclick="getVal();">check</button>
+          <label><button value="submit" onclick="setStorage(); getVal();" type="submit">Register</button></label>
       </form>
     </div>
   </body>
