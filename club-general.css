@@ -1,0 +1,29 @@
+body{
+  background-color: #ffffb3;
+  font-family: "Lucida Console", Monaco, monospace;
+  color: #002699;
+  font-size: 14px;
+}
+#links{
+  background-color: #ff4d4d;
+  width: 150px;
+  height: 780px;
+  float: left;
+  text-align:center;
+}
+#header{
+	background-color:transparent;
+	width:400px;
+	margin: 0cm 5cm 0cm 5cm;
+}
+#content{
+	background-color:transparent; 
+	width:850px;
+	float:left;
+	text-align:center;
+}
+#content img{
+	margin: auto;
+	width: 30%;
+	height: 275px;
+}
