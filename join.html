@@ -1,55 +1,142 @@
 <!doctype html>
 <html>
-  <head>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		function Join(){
+			var username = document.querySelector('input[name=username]');
+			var password = document.querySelector('input[name=password]');
+			var name = document.querySelector('input[name=name]');
+			var email = document.querySelector('input[name=email]');
+			var date = document.querySelector('input[name=date]');
+			var requested = document.querySelector('input[name=requested]');
+			var cardnumber = document.querySelector('input[name=cardnumber]');
 
-  </head>
-  <body>
-    <div id="header">
-      <img alt="my favorite pokemon"></img>
-      <h1>North American League of Greninja Enthusiasts</h1>
-      <h2 id="slogan">We caught them all, but only one caught us.</h2>
-    </div>
-     <div id="links">
-			<a href="index.html" target="_blank">Homepage</a>
-			<a href="about.html" target="_blank">About Us</a>
-      <a href="Greninja.html">All About [pokemon]</a>
-			<a href="sitemap.html" target="_blank">Site Map</a>
-		</div>
-    <div>
-      <h2>Join our League!</h2>
-      <form action="POST">
-        <p>
-          <label>Username: <input type="textbox" name="username" /></label>
-          <label>Password: <input type="password" name="password" /></label>
-        </p>
-        <p>
-          <label>Preferred Title: <input type="radio" name="title" /></label>
-          <label>First Name: <input type="textbox" name="firstname" /></label>
-          <label>Last Name: <input type="textbox" name="lastname" /></label>
-      ` </p>
-          <label>Gender: <input type="radio" name="gender" /></label>
-        <p>
-          <label>Email Address: <input type="textbox" name="email" /></label>
-          <label>Date of Birth: <input type="textbox" name="birthdate" /></label>
-        </p>
-          <label>Credit Card Number: <input type="textbox" name=ccn /></label>
-        <p>
+			<!-- tests if functions in if statement are all truly valid before running --!>
+			if (Username()){
+				localStorage.setItem("username", username);
+				localStorage.setItem("password", password);
+				localStorage.setItem("name", name);
+				localStorage.setItem("email", email);
+				localStorage.setItem("date", date);
+				localStorage.setItem("requested", requested);
+				localStorage.setItem("cardnumber", cardnumber);
 
-          <label>Favorite Type of Apple: <input type="favorite type of apple" /></label></p>
-      </form>
-    </div>
-  </body>
+				var month = document.querySelector('select[name=expiry-month]').value;
+				var year = document.querySelector('select[name=expiry-year]').value;
+				var apple = document.querySelector('select[name=apple]').value;
+				localStorage.setItem("month", month);
+				localStorage.setItem("year", year);
+				localStorage.setItem("apple", apple);
+				<!-- Removes the div for the form and creates a p element thanking the user --!>
+				document.getElementById("loggedIn").innerHTML = "Thanks for registering!";
+			} else {
+				alert("Please enter data correctly. We only accept Visa credit cards.");
+			}
+		}
+		<!--3-20 characters long, no _ or . at start, no _, _., or . inside, no _ or . at end --!>
+		function Username(username){
+			var reUser = /^(?=^.{3,20}$)^[a-zA-Z][a-zA-Z0-9]*[._-]?[a-zA-Z0-9]+$/;
+			return reUser.test(username);
+		}
+		<!-- Minimum 8 characters, 1 uppercase, 1 lowercase, 1 number --!>
+		function Password(password){
+			var rePass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+			return rePass.test(password);
+		}
+		<!-- regex matches a full name, even Martin Luther King Jr --!>
+		function Name(name){
+			var reName = /^[a-z ,.'-]+$/i;
+			return reName.test(name);
+		}
+		<!-- Just tests the syntax for an e-mail address --!>
+		function Email(email){
+			var remail = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+			return remail.test(email);
+		}
+		<!-- MM/DD/YYYY between 1900 and 2099 --!>
+		function Date(date){
+			var reDate = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+			return reDate.test(date);
+		}
+		<!-- regex works for alphabet, dots, spaces, and numbers --!>
+		function Requested(requested){
+			var reRequest = /^[A-Za-z0-9\s]{1,}[\.]{0,1}[A-Za-z0-9\s]{0,}$/;
+			return reRequest.test(requested);
+		}
+		<!-- regex matches Visa cards starting with 4, 13-16 digits total --!>
+		function CreditCard(cardnumber){
+			var reCard = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+			return reCard.test(cardnnumber);
+		}
+	</script>
+	<title>Become a member!</title>
+</head>
+<body>
+	<div id="header">
+		<img alt="my favorite pokemon"></img>
+		<h1>North American League of Greninja Enthusiasts</h1>
+		<h2 id="slogan">We caught them all, but only one caught us.</h2>
+	</div>
+	<h1>Register</h1>
+	<div id="links">
+		<a href="homepage.html">Homepage</a>
+		<a href="about.html">About Us</a>
+		<a href="Greninja.html">All About Greninja</a>
+		<a href="sitemap.html">Site Map</a>
+	</div>
+	<div id="loggedIn">
+		<form action="POST">
+			<label>Enter Username: <br><input type="textbox" name="username" required /></label><br>
+			<label>Enter Password: <br><input type="password" name="password" required /></label><br>
+			<label>Enter First & Last Name: <br><input type="textbox" name="name" required/></label><br>
+			<label>Enter E-mail: <br><input type="email" name="email" required/></label><br>
+			<label>Enter Birth Date (MM/DD/YYYY): <br><input type="datetime" name="date" required/></label><br>
+			<label>Enter Gender: <br><input type="radio" name="gender" value="male">Male
+				<input type="radio" name="gender" value="female">Female</label><br>
+			<label>Enter Requested Title: <br><input type="textbox" name="requested" required/></label><br>
+			<label>Enter Credit Card Number: <br><input type="text" name="cardnumber" id="cardnumber" placeholder="Debit/Credit Card Number"/><br>
+				<select name="expiry-month" id="expiry-month">
+					<option selected value="Month">Month</option>
+					<option value="01">Jan (01)</option>
+					<option value="02">Feb (02)</option>
+					<option value="03">Mar (03)</option>
+					<option value="04">Apr (04)</option>
+					<option value="05">May (05)</option>
+					<option value="06">June (06)</option>
+					<option value="07">July (07)</option>
+					<option value="08">Aug (08)</option>
+					<option value="09">Sep (09)</option>
+					<option value="10">Oct (10)</option>
+					<option value="11">Nov (11)</option>
+					<option value="12">Dec (12)</option>
+				</select>
+				<select name="expiry-year" id="expiry-year">
+					<option value="16">2016</option>
+					<option value="17">2017</option>
+					<option value="18">2018</option>
+					<option value="19">2019</option>
+					<option value="20">2020</option>
+					<option value="21">2021</option>
+					<option value="22">2022</option>
+					<option value="23">2023</option>
+					<option value="24">2024</option>
+					<option value="25">2025</option>
+					<option value="26">2026</option>
+				</select></label><br>
+			<label>Favorite Type of Apple: <br><select name="apple" id="apple">
+				<option selected value="None">None</option>
+				<option value="Honeycrisp">Honeycrisp</option>
+				<option value="Red Delicious">Red Delicious</option>
+				<option value="Cripps Pink">Cripps Pink</option>
+				<option value="Golden Delicious">Golden Delicious</option>
+				<option value="Braeburn">Braeburn</option>
+				<option value="Gravenstein">Gravenstein</option>
+				<option value="Jonagold">Jonagold</option>
+				<option value="Gala">Gala</option>
+			</select></label>
+			<input type="button" value="register" onclick="Join();"/>
+		</form>
+	</div>
+</body>
 </html>
-
-<!-- must require a user to register with a valid
-
-    username
-    password
-    first name/last name
-    e-mail
-    date of birth
-    gender
-    requested title
-    Credit card number
-    favorite type of apple (something in a select box)
--->
